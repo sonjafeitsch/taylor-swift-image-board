@@ -1,4 +1,4 @@
-import "./App.css";
+import { Button } from "./components/ui/button";
 import { useImages } from "./graphql/useImages";
 
 function App() {
@@ -6,11 +6,19 @@ function App() {
   console.log(images);
 
   return (
-    <div className="flex flex-col justify-start gap-4 w-full">
-      <h1>Hello Taylor</h1>
-      <div className="masonry">
+    <div className="flex flex-col h-full w-full">
+      <div className="flex justify-between p-4">
+        <h1 className="text-xl">Hello Taylor</h1>
+        <Button>Hinzufügen</Button>
+      </div>
+      <div className="masonry p-4 shrink overflow-auto">
         {images.map((image) => (
-          <img src={image.url} key={image.id} style={{ width: "100%" }} />
+          <img
+            className="rounded-xl"
+            src={image.url}
+            key={image.id}
+            style={{ width: "100%" }}
+          />
         ))}
       </div>
     </div>
