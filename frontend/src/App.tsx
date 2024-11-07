@@ -3,7 +3,10 @@ import { useImages } from "./graphql/useImages";
 
 function App() {
   const { images, error } = useImages();
-  console.log(images);
+
+  if (error) {
+    return <div>A lot going on at the moment</div>;
+  }
 
   return (
     <div className="flex flex-col h-full w-full">
