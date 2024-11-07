@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Image {
+  id: Float!
+  url: String!
+  description: String
+}
+
+type Query {
+  images: [Image!]!
+  image(id: Int!): Image!
+}
+
+type Mutation {
+  createImage(createImageInput: CreateImageInput!): Image!
+  updateImage(updateImageInput: UpdateImageInput!): Image!
+  removeImage(id: Int!): Image!
+}
+
+input CreateImageInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateImageInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
