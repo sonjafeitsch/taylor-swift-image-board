@@ -9,5 +9,5 @@ export class Image {
   url: string;
 
   @Field(() => String, { nullable: true })
-  description: string;
+  description?: string;
 }

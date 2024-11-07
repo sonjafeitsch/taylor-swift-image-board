@@ -1,24 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateImageInput } from './dto/create-image.input';
-import { UpdateImageInput } from './dto/update-image.input';
 import { taylorSwiftImages } from './taylor';
+import { Image } from './entities/image.entity';
 
 @Injectable()
 export class ImagesService {
-  create(createImageInput: CreateImageInput) {
-    return 'This action adds a new image';
+  private taylorSwiftImages = [];
+  constructor() {
+    this.taylorSwiftImages = taylorSwiftImages;
+  }
+
+  create(createImageInput: CreateImageInput): Image {
+    const newImage = {
+      id: this.taylorSwiftImages.length + 1,
+      description: 'foo',
+      ...createImageInput,
+    };
+    console.log(newImage);
+    const newImages = [...this.taylorSwiftImages, newImage];
+    console.log(newImages);
+    this.taylorSwiftImages = newImages;
+    return newImage;
   }
 
   findAll() {
-    return taylorSwiftImages;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} image`;
-  }
-
-  update(id: number, updateImageInput: UpdateImageInput) {
-    return `This action updates a #${id} image`;
+    return this.taylorSwiftImages;
   }
 
   remove(id: number) {
