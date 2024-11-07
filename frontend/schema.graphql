@@ -1,6 +1,6 @@
 input CreateImageInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  description: String
+  url: String!
 }
 
 type Image {
@@ -12,16 +12,8 @@ type Image {
 type Mutation {
   createImage(createImageInput: CreateImageInput!): Image!
   removeImage(id: Int!): Image!
-  updateImage(updateImageInput: UpdateImageInput!): Image!
 }
 
 type Query {
-  image(id: Int!): Image!
   images: [Image!]!
-}
-
-input UpdateImageInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }

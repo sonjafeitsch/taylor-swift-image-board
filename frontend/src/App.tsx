@@ -1,4 +1,4 @@
-import { Button } from "./components/ui/button";
+import { AddNewImage } from "./AddNewImage";
 import { useImages } from "./graphql/useImages";
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="flex flex-col h-full w-full">
       <div className="flex justify-between p-4">
-        <h1 className="text-xl">Hello Taylor</h1>
-        <Button>Hinzufügen</Button>
+        <h1 className="text-xl">Taylor Swift Image Board</h1>
+        <AddNewImage />
       </div>
       <div className="masonry p-4 shrink overflow-auto">
         {images.map((image) => (

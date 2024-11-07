@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "\n  mutation addImage($createImageInput: CreateImageInput!) {\n    createImage(createImageInput: $createImageInput) {\n      id\n      url\n      description\n    }\n  }\n": types.AddImageDocument,
     "\n  query getImages {\n    images {\n      id\n      description\n      url\n    }\n  }\n": types.GetImagesDocument,
 };
 
@@ -31,6 +32,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation addImage($createImageInput: CreateImageInput!) {\n    createImage(createImageInput: $createImageInput) {\n      id\n      url\n      description\n    }\n  }\n"): (typeof documents)["\n  mutation addImage($createImageInput: CreateImageInput!) {\n    createImage(createImageInput: $createImageInput) {\n      id\n      url\n      description\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
