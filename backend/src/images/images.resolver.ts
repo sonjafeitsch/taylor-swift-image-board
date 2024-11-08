@@ -1,7 +1,17 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  Subscription,
+} from '@nestjs/graphql';
 import { ImagesService } from './images.service';
 import { Image } from './entities/image.entity';
 import { CreateImageInput } from './dto/create-image.input';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub();
 
 @Resolver(() => Image)
 export class ImagesResolver {
@@ -9,7 +19,9 @@ export class ImagesResolver {
 
   @Mutation(() => Image)
   createImage(@Args('createImageInput') createImageInput: CreateImageInput) {
-    return this.imagesService.create(createImageInput);
+    const newImage = this.imagesService.create(createImageInput);
+    pubSub.publish('imageAdded', { imageAdded: newImage });
+    return newImage;
   }
 
   @Query(() => [Image], { name: 'images' })
@@ -20,5 +32,10 @@ export class ImagesResolver {
   @Mutation(() => Image)
   removeImage(@Args('id', { type: () => Int }) id: number) {
     return this.imagesService.remove(id);
+  }
+
+  @Subscription(() => Image)
+  imageAdded() {
+    return pubSub.asyncIterator('imageAdded');
   }
 }

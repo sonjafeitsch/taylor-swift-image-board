@@ -21,3 +21,7 @@ input CreateImageInput {
   url: String!
   description: String
 }
+
+type Subscription {
+  imageAdded: Image!
+}

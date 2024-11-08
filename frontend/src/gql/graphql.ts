@@ -49,6 +49,11 @@ export type Query = {
   images: Array<Image>;
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  imageAdded: Image;
+};
+
 export type AddImageMutationVariables = Exact<{
   createImageInput: CreateImageInput;
 }>;
