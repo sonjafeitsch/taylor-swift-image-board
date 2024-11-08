@@ -16,7 +16,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  mutation addImage($createImageInput: CreateImageInput!) {\n    createImage(createImageInput: $createImageInput) {\n      id\n      url\n      description\n    }\n  }\n": types.AddImageDocument,
     "\n  query getImages {\n    images {\n      id\n      description\n      url\n    }\n  }\n": types.GetImagesDocument,
-    "\n  subscription OnImageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n": types.OnImageAddedDocument,
+    "\n  subscription imageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n": types.ImageAddedDocument,
 };
 
 /**
@@ -44,7 +44,7 @@ export function graphql(source: "\n  query getImages {\n    images {\n      id\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  subscription OnImageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n"): (typeof documents)["\n  subscription OnImageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n"];
+export function graphql(source: "\n  subscription imageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n"): (typeof documents)["\n  subscription imageAdded {\n    images: imageAdded {\n      id\n      url\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

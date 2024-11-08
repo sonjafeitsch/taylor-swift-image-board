@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const IMAGE_ADDED = gql`
-  subscription OnImageAdded {
+  subscription imageAdded {
     images: imageAdded {
       id
       url
